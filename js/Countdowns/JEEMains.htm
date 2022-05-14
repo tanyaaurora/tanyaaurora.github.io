@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Mains Countdown</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<style>
+body {
+    text-align: center;
+    margin-top:auto;
+    background: black;
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: lighter;   
+}
+#timer {
+    font-size: 2em;
+    font-weight: 100;
+    color: white;
+    text-shadow: 4 4 40px #48C8FF;
+}
+#timer div {
+    display: inline-block;
+    min-width: 69px;
+}
+#timer div li {
+    color: #79b0f085;
+    display: block;
+    font-size: .40em;
+    font-weight: 400;
+}
+.time-left {
+    width: 100%;
+    font-size: 21px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+#timer, .time-left {
+    white-space: nowrap;
+    background: linear-gradient(135deg, rgba(0, 161, 241, 0.8), rgba(0, 161, 241, 0.2), rgba(0, 161, 241, 0.8), rgba(0, 161, 241, 0.2), rgba(0, 161, 241, 0.8));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 300% 300%;
+    -webkit-animation: camuflage 6s linear infinite;
+    animation: camuflage 6s linear infinite;
+    font-size: 21px;
+  }
+.session1, .session2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: lighter;
+    font-size: 21px;
+}
+@keyframes camuflage {
+    from {
+      background-position: 100% 50%;
+    }
+    to {
+      background-position: -50% 50%;
+    }
+  }
+@keyframes pulse {
+    from {
+      opacity: 0.7;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+</head>
+<body>
+    <div class="time-left">TIME LEFT for JEE Mains 2022</div>
+    <br> <br>
+    <div id="timer">
+        Session 1
+        <br>
+        <div class="session1">
+            <ul data-countdown="2022-06-20">
+                <span data-days="00">00</span>
+                <div>days</div>
+                <span data-hours="00">00</span>
+                <div>hours</div>
+                <span data-minutes="00">00</span>
+                <div>mins</div>
+                <span data-seconds="00">00</span>
+                <div>secs</div>
+            </ul>
+        </div>
+        <br>
+
+    <br> <br> <br> 
+
+        Session 2
+        <br>
+        <div class="session2">
+            <ul data-countdown="2022-07-21">
+                <span data-days="00">00</span>
+                <div>days</div>
+                <span data-hours="00">00</span>
+                <div>hours</div>
+                <span data-minutes="00">00</span>
+                <div>mins</div>
+                <span data-seconds="00">00 </span>
+                <div>secs</div>
+            </ul>
+        </div>
+    </div>
+
+</body>
+<script>
+$('[data-countdown]').each(function(){
+			var $deadline = new Date($(this).data('countdown')).getTime();
+
+			var $dataDays = $(this).children('[data-days]');
+			var $dataHours = $(this).children('[data-hours]');
+			var $dataminutes = $(this).children('[data-minutes]');
+			var $dataSeconds = $(this).children('[data-seconds]');
+
+			var x = setInterval(function(){
+
+				var now = new Date().getTime();
+				var t = $deadline - now;
+
+				var days = Math.floor(t/(1000*60*60*24));
+				var hours = Math.floor(t%(1000*60*60*24) / (1000*60*60));
+				var minutes = Math.floor(t%(1000*60*60) / (1000*60));
+				var seconds = Math.floor(t%(1000*60) / (1000));
+
+				if( days < 10 ){
+					days = '0'+days;
+				}
+
+				if( hours < 10 ){
+					hours = '0'+hours;
+				}
+
+				if( minutes < 10 ){
+					minutes = '0'+minutes;
+				}
+
+				if( seconds < 10 ){
+					seconds = '0'+seconds;
+				}
+
+				$dataDays.html(days);
+				$dataHours.html(hours);
+				$dataminutes.html(minutes);
+				$dataSeconds.html(seconds);
+
+
+				if( t <= 0 ){
+					clearInterval(x);
+
+					$dataDays.html('00');
+					$dataHours.html('00');
+					$dataminutes.html('00');
+					$dataSeconds.html('00');
+
+				}
+
+
+
+			},1000);
+		})
+</script>
+</html>
