@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Advanced 2022 Countdown</title>
+    
+<style>
+    body {
+    text-align: center;
+    margin-top: auto;
+    padding: 50px 50px;
+    background: black;
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: lighter;
+}
+#timer {
+    font-size: 2em;
+    font-weight: 100;
+    color: white;
+    text-shadow: 4 4 40px #48C8FF;
+}
+#timer div {
+    display: inline-block;
+    min-width: 69px;
+}
+#timer div span {
+    color: #79b0f085;
+    display: block;
+    font-size: .40em;
+    font-weight: 400;
+}
+.time-left {
+    width: 100%;
+    font-size: 21px;
+    margin-bottom: 40px;
+  }
+#timer, .time-left {
+    white-space: nowrap;
+    background: linear-gradient(135deg, rgba(0, 161, 241, 0.8), rgba(0, 161, 241, 0.2), rgba(0, 161, 241, 0.8), rgba(0, 161, 241, 0.2), rgba(0, 161, 241, 0.8));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 300% 300%;
+    -webkit-animation: camuflage 6s linear infinite;
+    animation: camuflage 6s linear infinite;
+  }
+@keyframes camuflage {
+    from {
+      background-position: 100% 50%;
+    }
+    to {
+      background-position: -50% 50%;
+    }
+  }
+@keyframes pulse {
+    from {
+      opacity: 0.7;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+</head>
+<body>
+    <div class="time-left">TIME LEFT for JEE Advanced 2022</div>
+    <div id="timer"></div>
+</body>
+<script>
+    function updateTimer() {
+    future = Date.parse("aug 28, 2022 09:00:00");
+    now = new Date();
+    diff = future - now;
+
+    days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    hours = Math.floor(diff / (1000 * 60 * 60));
+    mins = Math.floor(diff / (1000 * 60));
+    secs = Math.floor(diff / 1000);
+
+    d = days;
+    h = hours - days * 24;
+    m = mins - hours * 60;
+    s = secs - mins * 60;
+
+    document.getElementById("timer")
+        .innerHTML =
+        '<div>' + d + '<span>days</span></div>' +
+        '<div>' + h + '<span>hours</span></div>' +
+        '<div>' + m + '<span>minutes</span></div>' +
+        '<div>' + s + '<span>seconds</span></div>';
+}
+setInterval('updateTimer()', 1000);
+</script>
+</html>
